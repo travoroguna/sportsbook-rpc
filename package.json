@@ -1,8 +1,24 @@
 {
+  "name": "sportsbook-rpc",
+  "version": "1.0.0",
+  "description": "gRPC definitions for Sportsbook",
+  "main": "gen/js/index.js",
+  "types": "gen/ts/index.d.ts",
+  "files": [
+    "gen/js",
+    "gen/ts"
+  ],
+  "scripts": {
+    "build": "./generate.sh"
+  },
+  "dependencies": {
+    "@bufbuild/connect": "^0.8.0",
+    "@bufbuild/connect-web": "^0.8.0",
+    "@bufbuild/protobuf": "^1.0.0"
+  },
   "devDependencies": {
-    "@bufbuild/connect": "^0.13.0",
-    "@bufbuild/protobuf": "^2.2.5",
-    "@bufbuild/protoc-gen-connect-es": "^0.13.0",
-    "@bufbuild/protoc-gen-es": "^1.10.0"
+    "@bufbuild/protoc-gen-es": "^1.0.0",
+    "@bufbuild/protoc-gen-connect-es": "^0.8.0",
+    "typescript": "^4.9.0"
   }
 }
