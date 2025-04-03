@@ -8,7 +8,7 @@ This repository contains gRPC service definitions for the Sportsbook application
 
 ## How to Generate Code
 
-1. Ensure you have Go installed
+1. Ensure you have Go and Node.js installed
 2. Run the generation script:
 
 ```bash
@@ -17,8 +17,8 @@ This repository contains gRPC service definitions for the Sportsbook application
 
 This will:
 - Install required dependencies
-- Generate Go code from proto files
-- Update the Go module
+- Generate Go and TypeScript code from proto files
+- Update the Go module and create a Node.js package.json if needed
 
 ## How to Import and Use
 
@@ -27,14 +27,14 @@ This will:
 Add this module as a dependency:
 
 ```bash
-go get github.com/sportsbook/sportsbook-rpc
+go get github.com/travoroguna/sportsbook-rpc
 ```
 
 Then import the generated packages:
 
 ```go
 import (
-    identitypb "github.com/sportsbook/sportsbook-rpc/gen/go/identity"
+    identitypb "github.com/travoroguna/sportsbook-rpc/gen/go/identity"
     "google.golang.org/grpc"
 )
 
@@ -50,26 +50,50 @@ response, err := client.CreateUser(context.Background(), &identitypb.CreateUserR
 })
 ```
 
-### Implementing Servers
+### In TypeScript/Node.js Projects
 
-```go
-import (
-    identitypb "github.com/sportsbook/sportsbook-rpc/gen/go/identity"
-    "google.golang.org/grpc"
-)
+Add this module as a dependency:
 
-// Implement the service interface
-type identityServer struct {
-    identitypb.UnimplementedIdentityServiceServer
-}
+```bash
+npm install /path/to/sportsbook-rpc
+# or from git repository
+npm install github:travoroguna/sportsbook-rpc
+```
 
-// Implement methods
-func (s *identityServer) CreateUser(ctx context.Context, req *identitypb.CreateUserRequest) (*identitypb.UserResponse, error) {
-    // Implementation goes here
-}
+Then import the generated packages:
 
-// Register with gRPC server
-func RegisterServices(s *grpc.Server) {
-    identitypb.RegisterIdentityServiceServer(s, &identityServer{})
-}
+```typescript
+import { createPromiseClient } from "@bufbuild/connect";
+import { createConnectTransport } from "@bufbuild/connect-node";
+import { IdentityService } from "sportsbook-rpc/gen/ts/identity/identity_connect";
+import { CreateUserRequest } from "sportsbook-rpc/gen/ts/identity/identity_pb";
+
+// Create a client
+const transport = createConnectTransport({
+  baseUrl: "http://localhost:8080",
+});
+const client = createPromiseClient(IdentityService, transport);
+
+// Call a method
+const response = await client.createUser(new CreateUserRequest({
+  phone: "+1234567890",
+  email: "user@example.com",
+  password: "securepassword",
+}));
+```
+
+## Examples
+
+Example implementations are available in the `examples/` directory:
+
+- `typescript-client.ts`: Example TypeScript client
+- `typescript-server.ts`: Example TypeScript server implementation
+
+To run the examples:
+
+```bash
+cd examples
+npm install
+npm run start:server  # In one terminal
+npm run start:client  # In another terminal
 ```

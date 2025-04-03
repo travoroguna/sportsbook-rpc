@@ -1,0 +1,21 @@
+{
+  "name": "sportsbook-rpc-examples",
+  "version": "1.0.0",
+  "description": "Examples for using Sportsbook RPC with TypeScript",
+  "scripts": {
+    "build": "tsc",
+    "start:server": "ts-node typescript-server.ts",
+    "start:client": "ts-node typescript-client.ts"
+  },
+  "dependencies": {
+    "@bufbuild/connect": "^0.8.0",
+    "@bufbuild/connect-fastify": "^0.8.0",
+    "@bufbuild/connect-node": "^0.8.0",
+    "@bufbuild/protobuf": "^1.0.0",
+    "fastify": "^4.15.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.0"
+  }
+}

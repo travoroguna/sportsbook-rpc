@@ -697,7 +697,7 @@ const file_proto_identity_identity_proto_rawDesc = "" +
 	"DeleteUser\x12\x1b.identity.DeleteUserRequest\x1a\x1c.identity.DeleteUserResponse\"\x00\x12:\n" +
 	"\x05Login\x12\x16.identity.LoginRequest\x1a\x17.identity.LoginResponse\"\x00\x12I\n" +
 	"\n" +
-	"VerifyUser\x12\x1b.identity.VerifyUserRequest\x1a\x1c.identity.VerifyUserResponse\"\x00B5Z3github.com/sportsbook/sportsbook-rpc/proto/identityb\x06proto3"
+	"VerifyUser\x12\x1b.identity.VerifyUserRequest\x1a\x1c.identity.VerifyUserResponse\"\x00B6Z4github.com/travoroguna/sportsbook-rpc/proto/identityb\x06proto3"
 
 var (
 	file_proto_identity_identity_proto_rawDescOnce sync.Once
